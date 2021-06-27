@@ -14,14 +14,35 @@ import java.util.List;
  */
 public class CasillaPierdeTurno extends Casilla implements CasillaEspecial {
 
+    /**
+     * Casilla especial en la que si un jugador cae en esta pierde el siguiente
+     * turno
+     *
+     * @param fila
+     * @param columna
+     * @param id
+     */
     public CasillaPierdeTurno(int fila, int columna, int id) {
         super(fila, columna, id);
     }
 
+    /**
+     * Casilla especial en la que si un jugador cae en esta pierde el siguiente
+     * turno
+     *
+     * @param fila
+     * @param columna
+     */
     public CasillaPierdeTurno(int fila, int columna) {
         super(fila, columna);
     }
 
+    /**
+     * Casilla especial en la que si un jugador cae en esta pierde el siguiente
+     * turno
+     *
+     * @param id
+     */
     public CasillaPierdeTurno(int id) {
         super(id);
     }

@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class CasillaRetroceso extends Casilla implements CasillaEspecial {
 
-    int posicionesParaRetroceder;
+    private int posicionesParaRetroceder;
 
     /**
      * Crea una casilla, en la que si un jugador cae retrocede N posiciones;
@@ -29,19 +29,52 @@ public class CasillaRetroceso extends Casilla implements CasillaEspecial {
         this.posicionesParaRetroceder = posicionesParaRetroceder;
     }
 
+    /**
+     * Crea una casilla, en la que si un jugador cae retrocede N posiciones;
+     *
+     * @param posicionesParaRetroceder
+     * @param fila
+     * @param columna
+     */
     public CasillaRetroceso(int posicionesParaRetroceder, int fila, int columna) {
         super(fila, columna);
         this.posicionesParaRetroceder = posicionesParaRetroceder;
     }
 
+    /**
+     * Crea una casilla, en la que si un jugador cae retrocede N posiciones
+     *
+     * @param posicionesParaRetroceder
+     * @param id
+     */
     public CasillaRetroceso(int posicionesParaRetroceder, int id) {
         super(id);
         this.posicionesParaRetroceder = posicionesParaRetroceder;
     }
 
+    /**
+     * Retrocede al jugador N posiciones
+     *
+     * @param jugador
+     * @param casillas
+     */
     @Override
     public void accionCasilla(Jugador jugador, List<Casilla> casillas) {
-        jugador.setPosicion(jugador.getPosicion() - posicionesParaRetroceder);
+        jugador.setPosicion(jugador.getPosicion() - getPosicionesParaRetroceder());
+    }
+
+    /**
+     * @return the posicionesParaRetroceder
+     */
+    public int getPosicionesParaRetroceder() {
+        return posicionesParaRetroceder;
+    }
+
+    /**
+     * @param posicionesParaRetroceder the posicionesParaRetroceder to set
+     */
+    public void setPosicionesParaRetroceder(int posicionesParaRetroceder) {
+        this.posicionesParaRetroceder = posicionesParaRetroceder;
     }
 
 }

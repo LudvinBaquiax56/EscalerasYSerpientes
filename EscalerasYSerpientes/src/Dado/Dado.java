@@ -14,6 +14,11 @@ public class Dado {
     public Dado() {
     }
 
+    /**
+     * Lanza un dado y retorna un valor entre 1 y 6
+     *
+     * @return
+     */
     public static int tirarDado() {
         return (int) (Math.random() * 6 + 1);
     }

@@ -14,18 +14,43 @@ import java.util.List;
  */
 public class CasillaBonoDados extends Casilla implements CasillaEspecial {
 
+    /**
+     * Casilla con un bono para lanzar el dado en el mismo turno
+     *
+     * @param fila
+     * @param columna
+     * @param id
+     */
     public CasillaBonoDados(int fila, int columna, int id) {
         super(fila, columna, id);
     }
 
+    /**
+     *
+     * Casilla con un bono para lanzar el dado en el mismo turno
+     *
+     * @param fila
+     * @param columna
+     */
     public CasillaBonoDados(int fila, int columna) {
         super(fila, columna);
     }
 
+    /**
+     * Casilla con un bono para lanzar el dado en el mismo turno
+     *
+     * @param id
+     */
     public CasillaBonoDados(int id) {
         super(id);
     }
 
+    /**
+     * Permite al jugador lanzar nuevamente el lado en el mismo turno
+     *
+     * @param jugador
+     * @param casillas
+     */
     @Override
     public void accionCasilla(Jugador jugador, List<Casilla> casillas) {
         System.out.println("Ganaste otro turno");

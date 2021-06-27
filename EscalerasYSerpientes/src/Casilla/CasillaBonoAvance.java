@@ -15,22 +15,49 @@ import java.util.List;
 public class CasillaBonoAvance extends Casilla implements CasillaEspecial {
 
     private int posicionesParaAvanzar;
-    
+
+    /**
+     * Crea una casilla, en la que si un jugador cae avanza N posiciones
+     *
+     * @param posicionesParaAvanzar
+     * @param fila
+     * @param columna
+     * @param id
+     */
     public CasillaBonoAvance(int posicionesParaAvanzar, int fila, int columna, int id) {
         super(fila, columna, id);
         this.posicionesParaAvanzar = posicionesParaAvanzar;
     }
-    
+
+    /**
+     * Crea una casilla, en la que si un jugador cae avanza N posiciones
+     *
+     * @param posicionesParaAvanzar
+     * @param fila
+     * @param columna
+     */
     public CasillaBonoAvance(int posicionesParaAvanzar, int fila, int columna) {
         super(fila, columna);
         this.posicionesParaAvanzar = posicionesParaAvanzar;
     }
-    
+
+    /**
+     * Crea una casilla, en la que si un jugador cae avanza N posiciones
+     *
+     * @param posicionesParaAvanzar
+     * @param id
+     */
     public CasillaBonoAvance(int posicionesParaAvanzar, int id) {
         super(id);
         this.posicionesParaAvanzar = posicionesParaAvanzar;
     }
-    
+
+    /**
+     * Avanza al jugador N casillas
+     *
+     * @param jugador
+     * @param casillas
+     */
     @Override
     public void accionCasilla(Jugador jugador, List<Casilla> casillas) {
         jugador.setPosicion(jugador.getPosicion() + posicionesParaAvanzar);
@@ -49,5 +76,5 @@ public class CasillaBonoAvance extends Casilla implements CasillaEspecial {
     public void setPosicionesParaAvanzar(int posicionesParaAvanzar) {
         this.posicionesParaAvanzar = posicionesParaAvanzar;
     }
-    
+
 }

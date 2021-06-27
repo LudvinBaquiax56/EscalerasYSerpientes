@@ -16,15 +16,29 @@ public class CasillaInicio extends Casilla implements CasillaEspecial {
 
     private static final int ID_CASILLA = 1;
 
-
+    /**
+     * Crea la casilla inicial en la que todos los jugador inican
+     *
+     * @param fila
+     * @param columna
+     */
     public CasillaInicio(int fila, int columna) {
-        super(fila, columna,ID_CASILLA);
+        super(fila, columna, ID_CASILLA);
     }
 
+    /**
+     * Crea la casilla inicial en la que todos los jugador inican
+     */
     public CasillaInicio() {
         super(ID_CASILLA);
     }
 
+    /**
+     * Le da la bienvenida al jugador
+     *
+     * @param jugador
+     * @param casillas
+     */
     @Override
     public void accionCasilla(Jugador jugador, List<Casilla> casillas) {
         System.out.println("Bienvenido " + jugador.getNombre() + " ve a por todas");
