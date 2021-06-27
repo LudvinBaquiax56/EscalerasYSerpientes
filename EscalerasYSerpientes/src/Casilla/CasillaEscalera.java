@@ -57,7 +57,7 @@ public class CasillaEscalera extends Casilla implements CasillaEspecial {
      * Crea un casilla Escalera para que un jugador avance a una casilla en
      * especifico
      *
-     * @param filaSubir 
+     * @param filaSubir
      * @param columnaSubir
      * @param idCasillaSubir
      * @param id
@@ -77,7 +77,7 @@ public class CasillaEscalera extends Casilla implements CasillaEspecial {
      */
     @Override
     public void accionCasilla(Jugador jugador, List<Casilla> casillas) {
-        int casillasASubir = super.getId() - getIdCasillaSubir();
+        int casillasASubir = super.getId() - idCasillaSubir;
         jugador.setPosicion(jugador.getPosicion() + casillasASubir);
     }
 
