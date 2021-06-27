@@ -17,7 +17,7 @@ public class Jugador {
     private int partidasJugadas;
     private int partidasGanadas;
     private int partidasPerdidas;
-    private int conTurno;
+    private boolean conTurno;
 
     /**
      * @param Id
@@ -43,7 +43,8 @@ public class Jugador {
      * @param partidasPerdidas
      * @param conTurno
      */
-    public Jugador(int Id, String nombre, String apellido, int partidasJugadas, int partidasGanadas, int partidasPerdidas, int conTurno) {
+    public Jugador(int Id, String nombre, String apellido, int partidasJugadas,
+            int partidasGanadas, int partidasPerdidas, boolean conTurno) {
         this.Id = Id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -140,14 +141,17 @@ public class Jugador {
     /**
      * @return the conTurno
      */
-    public int getConTurno() {
+    public boolean getConTurno() {
+        if (conTurno == false) {
+
+        }
         return conTurno;
     }
 
     /**
      * @param conTurno the conTurno to set
      */
-    public void setConTurno(int conTurno) {
+    public void setConTurno(boolean conTurno) {
         this.conTurno = conTurno;
     }
 
