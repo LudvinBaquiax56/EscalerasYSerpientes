@@ -18,6 +18,7 @@ public class Jugador {
     private int partidasGanadas;
     private int partidasPerdidas;
     private boolean conTurno;
+    private int posicion;
 
     /**
      * @param Id
@@ -141,11 +142,13 @@ public class Jugador {
     /**
      * @return the conTurno
      */
-    public boolean getConTurno() {
-        if (conTurno == false) {
-
+    public boolean isConTurno() {
+        boolean aux = conTurno;
+        if (!conTurno) {
+            aux = conTurno;
+            conTurno = true;
         }
-        return conTurno;
+        return aux;
     }
 
     /**
@@ -153,6 +156,20 @@ public class Jugador {
      */
     public void setConTurno(boolean conTurno) {
         this.conTurno = conTurno;
+    }
+
+    /**
+     * @return the posicion
+     */
+    public int getPosicion() {
+        return posicion;
+    }
+
+    /**
+     * @param posicion the posicion to set
+     */
+    public void setPosicion(int posicion) {
+        this.posicion = posicion;
     }
 
 }
