@@ -25,4 +25,8 @@ public class JuegoEscalerasYSerpientes {
         this.listaCasillas = listaCasillas;
     }
 
+    public void leerDatos(String ruta) {
+        
+    }
+
 }

@@ -187,4 +187,11 @@ public class Jugador {
         this.ficha = ficha;
     }
 
+    @Override
+    public String toString() {
+        return "Jugador{" + "Id: " + Id + ", Nombre: " + nombre + ", Apellido: "
+                + apellido + ", PJ: " + partidasJugadas + ", PG: " + partidasGanadas
+                + ", PP: " + partidasPerdidas + '}';
+    }
+
 }
