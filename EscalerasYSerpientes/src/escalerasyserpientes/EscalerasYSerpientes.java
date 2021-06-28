@@ -18,7 +18,7 @@ public class EscalerasYSerpientes {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        VentanaPrincipal ventana = new VentanaPrincipal();
+        VentanaPrincipal ventana = new VentanaPrincipal(new SistemaGeneral());
     }
 
 }

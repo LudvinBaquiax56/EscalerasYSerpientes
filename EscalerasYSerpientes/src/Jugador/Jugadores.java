@@ -3,10 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Juego;
+package Jugador;
 
-import Jugador.ExcepcionJugador;
-import Jugador.Jugador;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -124,4 +122,13 @@ public class Jugadores {
     public void setListadoJugadores(List<Jugador> listadoJugadores) {
         this.listadoJugadores = listadoJugadores;
     }
+
+    public String listarJugadores() {
+        String listadoJugadores = "Jugadores \n";
+        for (int i = 0; i < this.listadoJugadores.size(); i++) {
+            listadoJugadores = listadoJugadores + this.listadoJugadores.get(i).toString() + "\n";
+        }
+        return listadoJugadores;
+    }
+
 }
