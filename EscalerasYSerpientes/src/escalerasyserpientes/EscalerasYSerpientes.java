@@ -5,6 +5,8 @@
  */
 package escalerasyserpientes;
 
+import GUI.VentanaPrincipal;
+
 /**
  *
  * @author baquiax
@@ -16,6 +18,7 @@ public class EscalerasYSerpientes {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        VentanaPrincipal ventana = new VentanaPrincipal();
     }
 
 }

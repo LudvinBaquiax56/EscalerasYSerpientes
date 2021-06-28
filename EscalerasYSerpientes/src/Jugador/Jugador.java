@@ -19,6 +19,7 @@ public class Jugador {
     private int partidasPerdidas;
     private boolean conTurno;
     private int posicion;
+    private Ficha ficha;
 
     /**
      * @param Id
@@ -170,6 +171,20 @@ public class Jugador {
      */
     public void setPosicion(int posicion) {
         this.posicion = posicion;
+    }
+
+    /**
+     * @return the ficha
+     */
+    public Ficha getFicha() {
+        return ficha;
+    }
+
+    /**
+     * @param ficha the ficha to set
+     */
+    public void setFicha(Ficha ficha) {
+        this.ficha = ficha;
     }
 
 }
