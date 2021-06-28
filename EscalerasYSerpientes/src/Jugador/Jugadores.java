@@ -131,4 +131,47 @@ public class Jugadores {
         return listadoJugadores;
     }
 
+    /**
+     * Listado de titulos para un Jtable
+     *
+     * @return
+     */
+    public String[] listarTituloJTable() {
+        String[] nombreColumnas = {"ID", "NOMBRE", "APELLIDO", "PJ", "PG", "PP"};
+        return nombreColumnas;
+    }
+
+    /**
+     * lista todos los jugadores con datos completos
+     *
+     * @return
+     */
+    public String[][] listarDatosJtable() {
+        String[][] data = new String[listadoJugadores.size()][6];
+        for (int i = 0; i < listadoJugadores.size(); i++) {
+            data[i][0] = String.valueOf(listadoJugadores.get(i).getId());
+            data[i][1] = listadoJugadores.get(i).getNombre();
+            data[i][2] = listadoJugadores.get(i).getApellido();
+            data[i][3] = String.valueOf(listadoJugadores.get(i).getPartidasJugadas());
+            data[i][4] = String.valueOf(listadoJugadores.get(i).getPartidasGanadas());
+            data[i][5] = String.valueOf(listadoJugadores.get(i).getPartidasPerdidas());
+        }
+        return data;
+    }
+
+    /**
+     * lista todos los jugadores con datos resumidos
+     *
+     * @return
+     */
+    public String[][] listarJugadoresEleccionJtable() {
+        String[][] data = new String[listadoJugadores.size()][6];
+        for (int i = 0; i < listadoJugadores.size(); i++) {
+            data[i][0] = String.valueOf(listadoJugadores.get(i).getId());
+            data[i][1] = listadoJugadores.get(i).getNombre();
+            data[i][2] = listadoJugadores.get(i).getApellido();
+        }
+        return data;
+    }
+
 }

@@ -38,6 +38,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnJugar = new javax.swing.JButton();
         btnAgregarJugador = new javax.swing.JButton();
+        btnMostrarJugadores = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu Principal");
@@ -58,6 +59,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnMostrarJugadores.setText("Mostrar Jugadores");
+        btnMostrarJugadores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMostrarJugadoresActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -66,7 +74,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnJugar, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
-                    .addComponent(btnAgregarJugador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnAgregarJugador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnMostrarJugadores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 512, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -80,8 +89,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(75, 75, 75)
                 .addComponent(btnJugar)
-                .addGap(18, 18, 18)
+                .addGap(12, 12, 12)
                 .addComponent(btnAgregarJugador)
+                .addGap(18, 18, 18)
+                .addComponent(btnMostrarJugadores)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -98,9 +109,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         AgregarJugador ventana = new AgregarJugador(this, sistema.getJugadores());
     }//GEN-LAST:event_btnAgregarJugadorActionPerformed
 
+    private void btnMostrarJugadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarJugadoresActionPerformed
+        // TODO add your handling code here:
+        MostrarJugadores ventana = new MostrarJugadores(this, sistema.getJugadores());
+    }//GEN-LAST:event_btnMostrarJugadoresActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarJugador;
     private javax.swing.JButton btnJugar;
+    private javax.swing.JButton btnMostrarJugadores;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
