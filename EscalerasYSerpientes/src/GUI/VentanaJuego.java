@@ -224,17 +224,41 @@ public class VentanaJuego extends javax.swing.JFrame {
         btnDener.setEnabled(false);
 
         jugadorEnTurno.setPosicion(jugadorEnTurno.getPosicion() + random);
+        if (!verificarGanador(jugadorEnTurno)) {
+            panelesCasilla.get(jugadorEnTurno.getPosicion()).mostrarFichaJugador(
+                    indiceJugadorEnTurno, jugadorEnTurno);
+        }
 
-        panelesCasilla.get(jugadorEnTurno.getPosicion()).mostrarFichaJugador(
-                indiceJugadorEnTurno, jugadorEnTurno);
-
+        if (verificarGanador(jugadorEnTurno)) {
+            JOptionPane.showMessageDialog(null, "Feliciades ganaste "
+                    + jugadorEnTurno.getNombre(), "Ganador " + jugadorEnTurno.getNombre(), INFORMATION_MESSAGE);
+            btnLanzar.setEnabled(false);
+            btnDener.setEnabled(false);
+        } else {
+            jugadorEnTurno = siguienteJugadorEnturno();
+        }
     }
-
+    
     private void iniciarJuego() {
         jugadorEnTurno = juego.getJugadores().get(0);
         indiceJugadorEnTurno = 1;
         lblJugadorEnTurno.setText(jugadorEnTurno.getNombre());
         lblJugadorEnTurno.repaint();
+    }
+
+    private Jugador siguienteJugadorEnturno() {
+        Jugador aux = null;
+        if (indiceJugadorEnTurno == juego.getJugadores().size()) {
+            indiceJugadorEnTurno = 1;
+            aux = juego.getJugadores().get(indiceJugadorEnTurno - 1);
+        } else {
+            aux = juego.getJugadores().get(indiceJugadorEnTurno);
+            indiceJugadorEnTurno++;
+        }
+        lblJugadorEnTurno.setText(aux.getNombre());
+        lblJugadorEnTurno.repaint();
+        lblJugadorEnTurno.revalidate();
+        return aux;
     }
 
 }
