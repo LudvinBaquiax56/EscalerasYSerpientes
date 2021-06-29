@@ -232,13 +232,15 @@ public class VentanaJuego extends javax.swing.JFrame {
         if (verificarGanador(jugadorEnTurno)) {
             JOptionPane.showMessageDialog(null, "Feliciades ganaste "
                     + jugadorEnTurno.getNombre(), "Ganador " + jugadorEnTurno.getNombre(), INFORMATION_MESSAGE);
+            jugadorEnTurno.setPartidasGanadas(jugadorEnTurno.getPartidasGanadas() + 1);
+            declararPerdedores();
             btnLanzar.setEnabled(false);
             btnDener.setEnabled(false);
         } else {
             jugadorEnTurno = siguienteJugadorEnturno();
         }
     }
-    
+
     private void iniciarJuego() {
         jugadorEnTurno = juego.getJugadores().get(0);
         indiceJugadorEnTurno = 1;
@@ -259,6 +261,15 @@ public class VentanaJuego extends javax.swing.JFrame {
         lblJugadorEnTurno.repaint();
         lblJugadorEnTurno.revalidate();
         return aux;
+    }
+
+    private void declararPerdedores() {
+        for (int i = 0; i < juego.getJugadores().size(); i++) {
+            if (juego.getJugadores().get(i) != jugadorEnTurno) {
+                juego.getJugadores().get(i).setPartidasPerdidas(
+                        juego.getJugadores().get(i).getPartidasPerdidas() + 1);
+            }
+        }
     }
 
 }
