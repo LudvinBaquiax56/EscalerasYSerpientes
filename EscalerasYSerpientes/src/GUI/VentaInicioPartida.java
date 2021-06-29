@@ -230,10 +230,10 @@ public class VentaInicioPartida extends javax.swing.JFrame {
                     iniciarTablero(linea);
                     break;
                 case 1:
-
+                    agregarCasillaPierdeTurno(linea);
                     break;
                 case 2:
-
+                    agregarCasillaTirarDados(linea);
                     break;
                 case 3:
 
@@ -313,6 +313,7 @@ public class VentaInicioPartida extends javax.swing.JFrame {
         int columnas = Integer.valueOf(coordenadasSeparadas[1]);
 
         casillas = new Casilla[filas][columnas];
+        listaCasillas = new ArrayList<Casilla>();
         boolean par = true;
         int id = 0;
         for (int i = 0; i < casillas.length; i++) {
@@ -334,16 +335,50 @@ public class VentaInicioPartida extends javax.swing.JFrame {
         }
         //Declarar el inicio del tablero
         casillas[0][0] = new CasillaInicio();
+        listaCasillas.set(0, casillas[0][0]);
         //Declarar el final del tablero
+        Casilla aux;
         if (par) {
-            Casilla aux = casillas[casillas.length - 1][0];
+            aux = casillas[casillas.length - 1][0];
             casillas[casillas.length - 1][0]
                     = new CasillaFin(aux.getFila(), aux.getColumna(), aux.getId());
+            listaCasillas.set(listaCasillas.size() - 1,
+                    casillas[casillas.length - 1][0]);
         } else {
-            Casilla aux = casillas[casillas.length - 1][casillas[0].length - 1];
+            aux = casillas[casillas.length - 1][casillas[0].length - 1];
             casillas[casillas.length - 1][casillas[0].length - 1]
                     = new CasillaFin(aux.getFila(), aux.getColumna(), aux.getId());
+            listaCasillas.set(listaCasillas.size() - 1,
+                    casillas[casillas.length - 1][casillas[0].length - 1]);
         }
+    }
+
+    private void agregarCasillaPierdeTurno(String linea) {
+        String coordenadas = quitarIndicacion(linea, PIERDE_TURNO);
+        System.out.println(coordenadas);
+        coordenadas = quitarParentesis(coordenadas);
+        String[] coordenadasSeparadas = coordenadas.split(",");
+        int filas = Integer.valueOf(coordenadasSeparadas[0]);
+        int columnas = Integer.valueOf(coordenadasSeparadas[1]);
+        Casilla aux = casillas[filas][columnas];
+        casillas[filas][columnas] = new CasillaPierdeTurno(filas, columnas,
+                aux.getId());
+        listaCasillas.set(aux.getId(), casillas[filas][columnas]);
+    }
+
+    private void agregarCasillaTirarDados(String linea) {
+        String coordenadas = quitarIndicacion(linea, TIRA_DADOS);
+        System.out.println(coordenadas);
+        coordenadas = quitarParentesis(coordenadas);
+        String[] coordenadasSeparadas = coordenadas.split(",");
+        int filas = Integer.valueOf(coordenadasSeparadas[0]);
+        int columnas = Integer.valueOf(coordenadasSeparadas[1]);
+        
+        Casilla aux = casillas[filas][columnas];
+        casillas[filas][columnas] = new CasillaBonoDados(filas, columnas,
+                aux.getId());
+        listaCasillas.set(aux.getId(), casillas[filas][columnas]);
+        System.out.println("listo");
     }
 
 }
