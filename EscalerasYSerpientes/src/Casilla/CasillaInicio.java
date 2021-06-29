@@ -30,7 +30,7 @@ public class CasillaInicio extends Casilla implements CasillaEspecial {
      * Crea la casilla inicial en la que todos los jugador inican
      */
     public CasillaInicio() {
-        super(ID_CASILLA);
+        super(0, 0, ID_CASILLA);
     }
 
     /**

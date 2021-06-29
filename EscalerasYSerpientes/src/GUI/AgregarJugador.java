@@ -53,6 +53,7 @@ public class AgregarJugador extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("Agregar Jugador");
 
         lblTitulo.setFont(new java.awt.Font("padmaa-Bold.1.1", 0, 24)); // NOI18N
         lblTitulo.setText("Agregar Jugador");

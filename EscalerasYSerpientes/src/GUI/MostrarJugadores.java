@@ -28,8 +28,9 @@ public class MostrarJugadores extends javax.swing.JFrame {
         this.menu = menu;
         this.jugadores = jugadores;
         initComponents();
-        IrAlMenu irAlMenu = new IrAlMenu(menu, this);
         iniciarTablero();
+        
+        IrAlMenu irAlMenu = new IrAlMenu(menu, this);
         super.addWindowListener(irAlMenu);
         super.setResizable(false);
         super.setLocationRelativeTo(null);
@@ -54,6 +55,7 @@ public class MostrarJugadores extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("Jugadores");
 
         lblTituloJugadores.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         lblTituloJugadores.setText("Jugadores");

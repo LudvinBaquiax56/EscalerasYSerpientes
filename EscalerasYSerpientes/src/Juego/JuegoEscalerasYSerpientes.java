@@ -24,9 +24,5 @@ public class JuegoEscalerasYSerpientes {
         this.casillas = casillas;
         this.listaCasillas = listaCasillas;
     }
-
-    public void leerDatos(String ruta) {
-        
-    }
-
+    
 }
