@@ -236,16 +236,18 @@ public class VentaInicioPartida extends javax.swing.JFrame {
                     agregarCasillaTirarDados(linea);
                     break;
                 case 3:
-
+                    agregarCasillaAvanza(linea);
                     break;
                 case 4:
-
+                    agregarCasillaRetrocede(linea);
                     break;
                 case 5:
 
                     break;
+                case 6:
+
+                    break;
                 default:
-                    throw new AssertionError();
             }
         }
 
@@ -259,11 +261,16 @@ public class VentaInicioPartida extends javax.swing.JFrame {
             valido = true;
         } else if (linea.indexOf(TIRA_DADOS) == 0) {
             valido = true;
-        } else if (linea.indexOf(RETROCEDE) == 0) {
+        } else if (linea.indexOf(AVANZA) == 0) {
             valido = true;
-        } else if (linea.indexOf(SUBIDA) == 0) {
+        } else if (linea.indexOf(RETROCEDE)
+                == 0) {
             valido = true;
-        } else if (linea.indexOf(BAJADA) == 0) {
+        } else if (linea.indexOf(SUBIDA)
+                == 0) {
+            valido = true;
+        } else if (linea.indexOf(BAJADA)
+                == 0) {
             valido = true;
         }
         return valido;
@@ -277,12 +284,14 @@ public class VentaInicioPartida extends javax.swing.JFrame {
             accion = 1;
         } else if (linea.indexOf(TIRA_DADOS) == 0) {
             accion = 2;
-        } else if (linea.indexOf(RETROCEDE) == 0) {
+        } else if (linea.indexOf(AVANZA) == 0) {
             accion = 3;
-        } else if (linea.indexOf(SUBIDA) == 0) {
+        } else if (linea.indexOf(RETROCEDE) == 0) {
             accion = 4;
-        } else if (linea.indexOf(BAJADA) == 0) {
+        } else if (linea.indexOf(SUBIDA) == 0) {
             accion = 5;
+        } else if (linea.indexOf(BAJADA) == 0) {
+            accion = 6;
         }
         return accion;
     }
@@ -355,7 +364,7 @@ public class VentaInicioPartida extends javax.swing.JFrame {
 
     private void agregarCasillaPierdeTurno(String linea) {
         String coordenadas = quitarIndicacion(linea, PIERDE_TURNO);
-        System.out.println(coordenadas);
+
         coordenadas = quitarParentesis(coordenadas);
         String[] coordenadasSeparadas = coordenadas.split(",");
         int filas = Integer.valueOf(coordenadasSeparadas[0]);
@@ -368,17 +377,48 @@ public class VentaInicioPartida extends javax.swing.JFrame {
 
     private void agregarCasillaTirarDados(String linea) {
         String coordenadas = quitarIndicacion(linea, TIRA_DADOS);
-        System.out.println(coordenadas);
+
         coordenadas = quitarParentesis(coordenadas);
         String[] coordenadasSeparadas = coordenadas.split(",");
         int filas = Integer.valueOf(coordenadasSeparadas[0]);
         int columnas = Integer.valueOf(coordenadasSeparadas[1]);
-        
+
         Casilla aux = casillas[filas][columnas];
         casillas[filas][columnas] = new CasillaBonoDados(filas, columnas,
                 aux.getId());
         listaCasillas.set(aux.getId(), casillas[filas][columnas]);
-        System.out.println("listo");
+    }
+
+    private void agregarCasillaAvanza(String linea) {
+        String coordenadas = quitarIndicacion(linea, AVANZA);
+
+        coordenadas = quitarParentesis(coordenadas);
+        String[] coordenadasSeparadas = coordenadas.split(",");
+
+        int filas = Integer.valueOf(coordenadasSeparadas[0]);
+        int columnas = Integer.valueOf(coordenadasSeparadas[1]);
+        int NoPosiciones = Integer.valueOf(coordenadasSeparadas[2]);
+
+        Casilla aux = casillas[filas][columnas];
+        casillas[filas][columnas] = new CasillaBonoAvance(NoPosiciones, filas, columnas,
+                aux.getId());
+        listaCasillas.set(aux.getId(), casillas[filas][columnas]);
+    }
+
+    private void agregarCasillaRetrocede(String linea) {
+        String coordenadas = quitarIndicacion(linea, RETROCEDE);
+
+        coordenadas = quitarParentesis(coordenadas);
+        String[] coordenadasSeparadas = coordenadas.split(",");
+
+        int filas = Integer.valueOf(coordenadasSeparadas[0]);
+        int columnas = Integer.valueOf(coordenadasSeparadas[1]);
+        int NoPosiciones = Integer.valueOf(coordenadasSeparadas[2]);
+
+        Casilla aux = casillas[filas][columnas];
+        casillas[filas][columnas] = new CasillaRetroceso(NoPosiciones, filas, columnas,
+                aux.getId());
+        listaCasillas.set(aux.getId(), casillas[filas][columnas]);
     }
 
 }
