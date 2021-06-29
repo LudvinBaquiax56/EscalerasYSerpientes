@@ -6,8 +6,6 @@
 package Dado;
 
 import java.awt.Image;
-import java.net.URI;
-import java.net.URL;
 import javax.swing.ImageIcon;
 
 /**
@@ -24,7 +22,7 @@ public class Dado {
      *
      * @return
      */
-    public static int tirarDado() {
+    public int tirarDado() {
         return (int) (Math.random() * 6 + 1);
     }
 

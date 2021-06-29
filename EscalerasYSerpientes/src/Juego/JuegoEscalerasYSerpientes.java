@@ -23,6 +23,7 @@ public class JuegoEscalerasYSerpientes {
         this.jugadores = jugadores;
         this.casillas = casillas;
         this.listaCasillas = listaCasillas;
+        colacarJugadoresEnElInicio();
     }
 
     /**
@@ -66,5 +67,17 @@ public class JuegoEscalerasYSerpientes {
     public void setListaCasillas(List<Casilla> listaCasillas) {
         this.listaCasillas = listaCasillas;
     }
-    
+
+    public void sumarPartidaJugada() {
+        for (int i = 0; i < jugadores.size(); i++) {
+            jugadores.get(i).setPartidasJugadas(jugadores.get(i).getPartidasJugadas() + 1);
+        }
+    }
+
+    public void colacarJugadoresEnElInicio() {
+        for (int i = 0; i < jugadores.size(); i++) {
+            jugadores.get(i).setPosicion(0);
+        }
+    }
+
 }

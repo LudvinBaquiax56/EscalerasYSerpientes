@@ -10,9 +10,12 @@ import GUI.pnlCasilla.PanelCasilla;
 import static GUI.pnlCasilla.PanelCasilla.ALTO;
 import static GUI.pnlCasilla.PanelCasilla.ANCHO;
 import Juego.JuegoEscalerasYSerpientes;
+import Jugador.Jugador;
 import WindowsListener.IrAlMenu;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 
 /**
  *
@@ -24,6 +27,9 @@ public class VentanaJuego extends javax.swing.JFrame {
     JuegoEscalerasYSerpientes juego;
     List<PanelCasilla> panelesCasilla;
     Dado dadito;
+    Jugador jugadorEnTurno;
+    int indiceJugadorEnTurno;
+    int random;
 
     /**
      * Creates new form VentanaJuego
@@ -46,6 +52,8 @@ public class VentanaJuego extends javax.swing.JFrame {
         super.setResizable(false);
         super.setLocationRelativeTo(null);
         super.setVisible(true);
+        iniciarJuego();
+        //jugar();
     }
 
     /**
@@ -158,12 +166,7 @@ public class VentanaJuego extends javax.swing.JFrame {
 
     private void btnDenerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDenerActionPerformed
         // TODO add your handling code here:
-        int random = dadito.tirarDado();
-        lblImagenDado.setIcon(dadito.obtenerImagen(random));
-        lblImagenDado.repaint();
-        lblValorDado.setText(String.valueOf(random));
-        btnLanzar.setEnabled(true);
-        btnDener.setEnabled(false);
+        lanzarDadoJugadorEnTurno();
     }//GEN-LAST:event_btnDenerActionPerformed
 
     private void iniciarPanelesCasilla() {
@@ -178,7 +181,7 @@ public class VentanaJuego extends javax.swing.JFrame {
             panelesCasilla.add(aux);
         }
         for (int i = 0; i < juego.getJugadores().size(); i++) {
-            panelesCasilla.get(0).mostrarFichaJugador((i + 1), juego.getJugadores().get(i));
+            mostrarFichaJugador((i + 1), juego.getJugadores().get(i));
         }
         this.repaint();
         this.revalidate();
@@ -197,6 +200,41 @@ public class VentanaJuego extends javax.swing.JFrame {
         int random = dadito.tirarDado();
         lblImagenDado.setIcon(dadito.obtenerImagen(random));
         lblImagenDado.repaint();
+    }
+
+    public void mostrarFichaJugador(int indiceJugador, Jugador jugador) {
+        panelesCasilla.get(jugador.getPosicion()).mostrarFichaJugador(indiceJugador, jugador);
+    }
+
+    public boolean verificarGanador(Jugador jugador) {
+        return jugador.getPosicion() >= juego.getListaCasillas().size() - 1;
+    }
+
+    private void lanzarDadoJugadorEnTurno() {
+        panelesCasilla.get(jugadorEnTurno.getPosicion()).ocultarFichaJugador(indiceJugadorEnTurno);
+        panelesCasilla.get(jugadorEnTurno.getPosicion()).repaint();
+
+        random = dadito.tirarDado();
+
+        lblImagenDado.setIcon(dadito.obtenerImagen(random));
+        lblImagenDado.repaint();
+        lblValorDado.setText(String.valueOf(random));
+
+        btnLanzar.setEnabled(true);
+        btnDener.setEnabled(false);
+
+        jugadorEnTurno.setPosicion(jugadorEnTurno.getPosicion() + random);
+
+        panelesCasilla.get(jugadorEnTurno.getPosicion()).mostrarFichaJugador(
+                indiceJugadorEnTurno, jugadorEnTurno);
+
+    }
+
+    private void iniciarJuego() {
+        jugadorEnTurno = juego.getJugadores().get(0);
+        indiceJugadorEnTurno = 1;
+        lblJugadorEnTurno.setText(jugadorEnTurno.getNombre());
+        lblJugadorEnTurno.repaint();
     }
 
 }
