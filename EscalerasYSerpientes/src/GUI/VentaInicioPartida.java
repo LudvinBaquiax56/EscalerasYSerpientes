@@ -355,15 +355,15 @@ public class VentaInicioPartida extends javax.swing.JFrame {
         int id = 0;
         for (int i = 0; i < casillas.length; i++) {
             if (par) {
-                for (int j = 0; j < casillas[0].length; j++) {
-                    casillas[i][j] = new Casilla(filas, columnas, id);
+                for (int j = 0; j < casillas[i].length; j++) {
+                    casillas[i][j] = new Casilla(i, j, id);
                     listaCasillas.add(casillas[i][j]);
                     id++;
                 }
                 par = false;
             } else {
                 for (int j = casillas[i].length - 1; j >= 0; j--) {
-                    casillas[i][j] = new Casilla(filas, columnas, id);
+                    casillas[i][j] = new Casilla(i, j, id);
                     listaCasillas.add(casillas[i][j]);
                     id++;
                 }

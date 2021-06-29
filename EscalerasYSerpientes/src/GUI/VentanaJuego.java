@@ -5,8 +5,14 @@
  */
 package GUI;
 
+import Dado.Dado;
 import GUI.pnlCasilla.PanelCasilla;
+import static GUI.pnlCasilla.PanelCasilla.ALTO;
+import static GUI.pnlCasilla.PanelCasilla.ANCHO;
 import Juego.JuegoEscalerasYSerpientes;
+import WindowsListener.IrAlMenu;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -16,7 +22,8 @@ public class VentanaJuego extends javax.swing.JFrame {
 
     VentanaPrincipal menu;
     JuegoEscalerasYSerpientes juego;
-    PanelCasilla[][] panelesCasilla;
+    List<PanelCasilla> panelesCasilla;
+    Dado dadito;
 
     /**
      * Creates new form VentanaJuego
@@ -28,7 +35,13 @@ public class VentanaJuego extends javax.swing.JFrame {
         initComponents();
         this.menu = menu;
         this.juego = juego;
+        dadito = new Dado();
         iniciarPanelesCasilla();
+
+        IrAlMenu irAlMenu = new IrAlMenu(this.menu, this);
+        super.addWindowListener(irAlMenu);
+
+        iniciarImagenDado();
 
         super.setResizable(false);
         super.setLocationRelativeTo(null);
@@ -45,26 +58,72 @@ public class VentanaJuego extends javax.swing.JFrame {
     private void initComponents() {
 
         pnlDado = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lblImagenDado = new javax.swing.JLabel();
+        lblValorDado = new javax.swing.JLabel();
+        lblJugadorEnTurno = new javax.swing.JLabel();
+        btnDener = new javax.swing.JButton();
+        btnLanzar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Escaleras y Serpientes");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setType(java.awt.Window.Type.POPUP);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Dado/dados-03.gif"))); // NOI18N
+        pnlDado.setBackground(new java.awt.Color(157, 254, 254));
+
+        lblImagenDado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Dado/random.gif"))); // NOI18N
+
+        lblValorDado.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        lblValorDado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblValorDado.setText("0");
+
+        lblJugadorEnTurno.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        lblJugadorEnTurno.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblJugadorEnTurno.setText("Jugador");
+
+        btnDener.setText("Detener");
+        btnDener.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDenerActionPerformed(evt);
+            }
+        });
+
+        btnLanzar.setText("Lanzar");
+        btnLanzar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLanzarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlDadoLayout = new javax.swing.GroupLayout(pnlDado);
         pnlDado.setLayout(pnlDadoLayout);
         pnlDadoLayout.setHorizontalGroup(
             pnlDadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(pnlDadoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlDadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnDener, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDadoLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(pnlDadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblJugadorEnTurno, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblImagenDado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(btnLanzar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblValorDado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         pnlDadoLayout.setVerticalGroup(
             pnlDadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlDadoLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(lblJugadorEnTurno)
+                .addGap(12, 12, 12)
+                .addComponent(lblImagenDado)
+                .addGap(12, 12, 12)
+                .addComponent(lblValorDado)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnLanzar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnDener)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -73,7 +132,7 @@ public class VentanaJuego extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(316, Short.MAX_VALUE)
+                .addContainerGap(1211, Short.MAX_VALUE)
                 .addComponent(pnlDado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -82,18 +141,62 @@ public class VentanaJuego extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pnlDado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(181, Short.MAX_VALUE))
+                .addContainerGap(426, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnLanzarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLanzarActionPerformed
+        // TODO add your handling code here:
+        lblImagenDado.setIcon(dadito.obtenerGifRandom());
+        lblImagenDado.repaint();
+
+        btnLanzar.setEnabled(false);
+        btnDener.setEnabled(true);
+    }//GEN-LAST:event_btnLanzarActionPerformed
+
+    private void btnDenerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDenerActionPerformed
+        // TODO add your handling code here:
+        int random = dadito.tirarDado();
+        lblImagenDado.setIcon(dadito.obtenerImagen(random));
+        lblImagenDado.repaint();
+        lblValorDado.setText(String.valueOf(random));
+        btnLanzar.setEnabled(true);
+        btnDener.setEnabled(false);
+    }//GEN-LAST:event_btnDenerActionPerformed
+
     private void iniciarPanelesCasilla() {
-        panelesCasilla = new PanelCasilla[juego.getCasillas().length][juego.getCasillas()[0].length];
+        panelesCasilla = new ArrayList<>();
+        for (int i = 0; i < juego.getListaCasillas().size(); i++) {
+            PanelCasilla aux = new PanelCasilla(juego.getListaCasillas().get(i));
+            aux.setVisible(true);
+            aux.setBounds(juego.getListaCasillas().get(i).getColumna() * ANCHO,
+                    juego.getListaCasillas().get(i).getFila() * ALTO, ANCHO, ALTO);
+            aux.repaint();
+            super.add(aux);
+            panelesCasilla.add(aux);
+        }
+        for (int i = 0; i < juego.getJugadores().size(); i++) {
+            panelesCasilla.get(0).mostrarFichaJugador((i + 1), juego.getJugadores().get(i));
+        }
+        this.repaint();
+        this.revalidate();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnDener;
+    private javax.swing.JButton btnLanzar;
+    private javax.swing.JLabel lblImagenDado;
+    private javax.swing.JLabel lblJugadorEnTurno;
+    private javax.swing.JLabel lblValorDado;
     private javax.swing.JPanel pnlDado;
     // End of variables declaration//GEN-END:variables
+
+    private void iniciarImagenDado() {
+        int random = dadito.tirarDado();
+        lblImagenDado.setIcon(dadito.obtenerImagen(random));
+        lblImagenDado.repaint();
+    }
+
 }

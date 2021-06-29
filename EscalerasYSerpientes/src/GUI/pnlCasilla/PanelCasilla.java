@@ -20,10 +20,12 @@ public class PanelCasilla extends javax.swing.JPanel {
 
     /**
      * Creates new form Casilla
+     * @param casilla
      */
-    public PanelCasilla() {
+    public PanelCasilla(Casilla casilla) {
         initComponents();
-        super.setBackground(casilla.getColor());
+        this.casilla = casilla;
+        super.setBackground(this.casilla.getColor());
         nombrarCasilla();
         ubicarCasilla();
         ocultarJugadores();
@@ -80,9 +82,6 @@ public class PanelCasilla extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblId, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(lblJ1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -92,7 +91,8 @@ public class PanelCasilla extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblJ4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblJ5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblJ5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -158,7 +158,7 @@ public class PanelCasilla extends javax.swing.JPanel {
                     + aux.getIdCasillaSubir() + ")");
         } else if (casilla instanceof CasillaSerpiente) {
             CasillaSerpiente aux = (CasillaSerpiente) casilla;
-            lblId.setText(String.valueOf(aux.getId()) + " # ("
+            lblId.setText(String.valueOf(aux.getId()) + " $ ("
                     + aux.getIdCasillaBajar() + ")");
         } else {
             lblId.setText(String.valueOf(casilla.getId()));
@@ -166,7 +166,7 @@ public class PanelCasilla extends javax.swing.JPanel {
         lblId.repaint();
     }
 
-    private void ubicarCasilla() {
+    public void ubicarCasilla() {
         super.setLocation(casilla.getFila() * ANCHO, casilla.getColumna() * ALTO);
     }
 

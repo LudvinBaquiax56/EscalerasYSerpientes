@@ -16,12 +16,12 @@ public class Casilla {
     public static final Color INICIO = Color.YELLOW;
     public static final Color FIN = Color.BLUE;
     
-    public static final Color NORMAL = Color.GRAY;
+    public static final Color NORMAL = Color.green;
     
     public static final Color PIERDE_TURNO = Color.RED;
     public static final Color TIRAR_DADOS = Color.WHITE;
     public static final Color AVANZAR = Color.CYAN;
-    public static final Color RETROCEDER = new Color(78, 22, 6);//corinto
+    public static final Color RETROCEDER = new Color(153, 93, 45);//corinto
     public static final Color ESCALERA = Color.ORANGE;
     public static final Color SERPIENTE = Color.MAGENTA;
 

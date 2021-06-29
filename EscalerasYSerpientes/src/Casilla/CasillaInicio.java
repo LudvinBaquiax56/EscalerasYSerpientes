@@ -24,6 +24,7 @@ public class CasillaInicio extends Casilla implements CasillaEspecial {
      */
     public CasillaInicio(int fila, int columna) {
         super(fila, columna, ID_CASILLA);
+        super.setColor(INICIO);
     }
 
     /**
@@ -31,6 +32,7 @@ public class CasillaInicio extends Casilla implements CasillaEspecial {
      */
     public CasillaInicio() {
         super(0, 0, ID_CASILLA);
+        super.setColor(INICIO);
     }
 
     /**
