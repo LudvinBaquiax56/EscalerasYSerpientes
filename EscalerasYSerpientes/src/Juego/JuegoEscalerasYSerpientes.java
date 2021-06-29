@@ -15,13 +15,55 @@ import java.util.List;
  */
 public class JuegoEscalerasYSerpientes {
 
-    List<Jugador> jugadores;
-    Casilla[][] casillas;
-    List<Casilla> listaCasillas;
+    private List<Jugador> jugadores;
+    private Casilla[][] casillas;
+    private List<Casilla> listaCasillas;
 
     public JuegoEscalerasYSerpientes(List<Jugador> jugadores, Casilla[][] casillas, List<Casilla> listaCasillas) {
         this.jugadores = jugadores;
         this.casillas = casillas;
+        this.listaCasillas = listaCasillas;
+    }
+
+    /**
+     * @return the jugadores
+     */
+    public List<Jugador> getJugadores() {
+        return jugadores;
+    }
+
+    /**
+     * @param jugadores the jugadores to set
+     */
+    public void setJugadores(List<Jugador> jugadores) {
+        this.jugadores = jugadores;
+    }
+
+    /**
+     * @return the casillas
+     */
+    public Casilla[][] getCasillas() {
+        return casillas;
+    }
+
+    /**
+     * @param casillas the casillas to set
+     */
+    public void setCasillas(Casilla[][] casillas) {
+        this.casillas = casillas;
+    }
+
+    /**
+     * @return the listaCasillas
+     */
+    public List<Casilla> getListaCasillas() {
+        return listaCasillas;
+    }
+
+    /**
+     * @param listaCasillas the listaCasillas to set
+     */
+    public void setListaCasillas(List<Casilla> listaCasillas) {
         this.listaCasillas = listaCasillas;
     }
     

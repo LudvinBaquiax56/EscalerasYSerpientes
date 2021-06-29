@@ -6,6 +6,7 @@
 package GUI;
 
 import Casilla.*;
+import Juego.JuegoEscalerasYSerpientes;
 import Jugador.*;
 import WindowsListener.IrAlMenu;
 import escalerasyserpientes.SistemaGeneral;
@@ -81,6 +82,7 @@ public class VentaInicioPartida extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblJugadores = new javax.swing.JTable();
         jbnLeerDatosTablero = new javax.swing.JButton();
+        btnJugar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Inicio Partida");
@@ -97,13 +99,13 @@ public class VentaInicioPartida extends javax.swing.JFrame {
 
         tblJugadores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID", "NOMBRE", "APELLIDO", "PJ", "PG", "PP"
             }
         ));
         jScrollPane1.setViewportView(tblJugadores);
@@ -115,17 +117,30 @@ public class VentaInicioPartida extends javax.swing.JFrame {
             }
         });
 
+        btnJugar.setText("Jugar");
+        btnJugar.setEnabled(false);
+        btnJugar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnJugarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblJugadores, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAgregarJugadorAPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbnLeerDatosTablero))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblJugadores, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAgregarJugadorAPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jbnLeerDatosTablero)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(153, 153, 153)
+                        .addComponent(btnJugar, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -139,17 +154,15 @@ public class VentaInicioPartida extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jbnLeerDatosTablero)
-                .addContainerGap(121, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(btnJugar)
+                .addGap(58, 58, 58))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarJugadorAPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarJugadorAPartidaActionPerformed
-        // TODO add your handling code here:
-        //getItemAt​(int index);
-        //getSelectedItem();
-        //getSelectedIndex();
         JColorChooser colorChooser = new JColorChooser();
         String[] nombreColumnas = {"ID", "NOMBRE", "APELLIDO", "PJ", "PG", "PP"};
         Jugador aux = (Jugador) jcbJugadores.getSelectedItem();
@@ -166,7 +179,12 @@ public class VentaInicioPartida extends javax.swing.JFrame {
         }
         tblJugadores.setModel(new DefaultTableModel(data, nombreColumnas));
         contador++;
-
+        if (contador > 1 && casillas != null) {
+            btnJugar.setEnabled(true);
+        }
+        if (contador == 5) {
+            btnAgregarJugadorAPartida.setEnabled(false);
+        }
     }//GEN-LAST:event_btnAgregarJugadorAPartidaActionPerformed
 
     private void jbnLeerDatosTableroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbnLeerDatosTableroActionPerformed
@@ -204,10 +222,20 @@ public class VentaInicioPartida extends javax.swing.JFrame {
         } else if (rootPaneCheckingEnabled) {
             JOptionPane.showMessageDialog(this, "Error en la busqueda del archivo", "Error", JOptionPane.ERROR_MESSAGE);
         }
+        if (contador > 1 && casillas != null) {
+            btnJugar.setEnabled(true);
+        }
     }//GEN-LAST:event_jbnLeerDatosTableroActionPerformed
+
+    private void btnJugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJugarActionPerformed
+        // TODO add your handling code here:
+        JuegoEscalerasYSerpientes juegito = new JuegoEscalerasYSerpientes(jugadoresPartida, casillas, listaCasillas);
+        VentanaJuego juego = new VentanaJuego(menu, juegito);
+    }//GEN-LAST:event_btnJugarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarJugadorAPartida;
+    private javax.swing.JButton btnJugar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbnLeerDatosTablero;
     private javax.swing.JLabel lblJugadores;
@@ -242,10 +270,10 @@ public class VentaInicioPartida extends javax.swing.JFrame {
                     agregarCasillaRetrocede(linea);
                     break;
                 case 5:
-
+                    agregarCasillaEscalera(linea);
                     break;
                 case 6:
-
+                    agregarCasillaSerpiente(linea);
                     break;
                 default:
             }
@@ -314,7 +342,7 @@ public class VentaInicioPartida extends javax.swing.JFrame {
 
     private void iniciarTablero(String linea) {
         String coordenadas = quitarIndicacion(linea, TABLERO);
-        System.out.println(coordenadas);
+
         coordenadas = quitarParentesis(coordenadas);
         String[] coordenadasSeparadas = coordenadas.split(",");
 
@@ -418,6 +446,42 @@ public class VentaInicioPartida extends javax.swing.JFrame {
         Casilla aux = casillas[filas][columnas];
         casillas[filas][columnas] = new CasillaRetroceso(NoPosiciones, filas, columnas,
                 aux.getId());
+        listaCasillas.set(aux.getId(), casillas[filas][columnas]);
+    }
+
+    private void agregarCasillaEscalera(String linea) {
+        String coordenadas = quitarIndicacion(linea, SUBIDA);
+
+        coordenadas = quitarParentesis(coordenadas);
+        String[] coordenadasSeparadas = coordenadas.split(",");
+
+        int filas = Integer.valueOf(coordenadasSeparadas[0]);
+        int columnas = Integer.valueOf(coordenadasSeparadas[1]);
+        int filaFin = Integer.valueOf(coordenadasSeparadas[2]);
+        int columnaFin = Integer.valueOf(coordenadasSeparadas[2]);
+        int idCasillaSubir = casillas[filaFin][columnaFin].getId();
+
+        Casilla aux = casillas[filas][columnas];
+        casillas[filas][columnas] = new CasillaEscalera(filaFin, columnaFin, idCasillaSubir,
+                filas, columnas, aux.getId());
+        listaCasillas.set(aux.getId(), casillas[filas][columnas]);
+    }
+
+    private void agregarCasillaSerpiente(String linea) {
+        String coordenadas = quitarIndicacion(linea, SUBIDA);
+
+        coordenadas = quitarParentesis(coordenadas);
+        String[] coordenadasSeparadas = coordenadas.split(",");
+
+        int filas = Integer.valueOf(coordenadasSeparadas[0]);
+        int columnas = Integer.valueOf(coordenadasSeparadas[1]);
+        int filaFin = Integer.valueOf(coordenadasSeparadas[2]);
+        int columnaFin = Integer.valueOf(coordenadasSeparadas[2]);
+        int idCasillaSubir = casillas[filaFin][columnaFin].getId();
+
+        Casilla aux = casillas[filas][columnas];
+        casillas[filas][columnas] = new CasillaSerpiente(filaFin, columnaFin, idCasillaSubir,
+                filas, columnas, aux.getId());
         listaCasillas.set(aux.getId(), casillas[filas][columnas]);
     }
 
