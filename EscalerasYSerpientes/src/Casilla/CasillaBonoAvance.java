@@ -26,6 +26,7 @@ public class CasillaBonoAvance extends Casilla implements CasillaEspecial {
      */
     public CasillaBonoAvance(int posicionesParaAvanzar, int fila, int columna, int id) {
         super(fila, columna, id);
+        super.setColor(AVANZAR);
         this.posicionesParaAvanzar = posicionesParaAvanzar;
     }
 
@@ -38,6 +39,7 @@ public class CasillaBonoAvance extends Casilla implements CasillaEspecial {
      */
     public CasillaBonoAvance(int posicionesParaAvanzar, int fila, int columna) {
         super(fila, columna);
+        super.setColor(AVANZAR);
         this.posicionesParaAvanzar = posicionesParaAvanzar;
     }
 
@@ -49,6 +51,7 @@ public class CasillaBonoAvance extends Casilla implements CasillaEspecial {
      */
     public CasillaBonoAvance(int posicionesParaAvanzar, int id) {
         super(id);
+        super.setColor(AVANZAR);
         this.posicionesParaAvanzar = posicionesParaAvanzar;
     }
 

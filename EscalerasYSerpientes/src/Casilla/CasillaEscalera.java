@@ -31,6 +31,7 @@ public class CasillaEscalera extends Casilla implements CasillaEspecial {
      */
     public CasillaEscalera(int filaSubir, int columnaSubir, int idCasillaSubir, int fila, int columna, int id) {
         super(fila, columna, id);
+        super.setColor(ESCALERA);
         this.filaSubir = filaSubir;
         this.columnaSubir = columnaSubir;
         this.idCasillaSubir = idCasillaSubir;
@@ -48,6 +49,7 @@ public class CasillaEscalera extends Casilla implements CasillaEspecial {
      */
     public CasillaEscalera(int filaSubir, int columnaSubir, int idCasillaSubir, int fila, int columna) {
         super(fila, columna);
+        super.setColor(ESCALERA);
         this.filaSubir = filaSubir;
         this.columnaSubir = columnaSubir;
         this.idCasillaSubir = idCasillaSubir;
@@ -64,6 +66,7 @@ public class CasillaEscalera extends Casilla implements CasillaEspecial {
      */
     public CasillaEscalera(int filaSubir, int columnaSubir, int idCasillaSubir, int id) {
         super(id);
+        super.setColor(ESCALERA);
         this.filaSubir = filaSubir;
         this.columnaSubir = columnaSubir;
         this.idCasillaSubir = idCasillaSubir;

@@ -5,6 +5,8 @@
  */
 package Jugador;
 
+import java.awt.Color;
+
 /**
  *
  * @author baquiax
@@ -19,7 +21,7 @@ public class Jugador {
     private int partidasPerdidas;
     private boolean conTurno;
     private int posicion;
-    private Ficha ficha;
+    private Color color;
 
     /**
      * @param Id
@@ -173,25 +175,25 @@ public class Jugador {
         this.posicion = posicion;
     }
 
-    /**
-     * @return the ficha
-     */
-    public Ficha getFicha() {
-        return ficha;
-    }
-
-    /**
-     * @param ficha the ficha to set
-     */
-    public void setFicha(Ficha ficha) {
-        this.ficha = ficha;
-    }
-
     @Override
     public String toString() {
         return "Jugador{" + "Id: " + Id + ", Nombre: " + nombre + ", Apellido: "
                 + apellido + ", PJ: " + partidasJugadas + ", PG: " + partidasGanadas
                 + ", PP: " + partidasPerdidas + '}';
+    }
+
+    /**
+     * @return the color
+     */
+    public Color getColor() {
+        return color;
+    }
+
+    /**
+     * @param color the color to set
+     */
+    public void setColor(Color color) {
+        this.color = color;
     }
 
 }

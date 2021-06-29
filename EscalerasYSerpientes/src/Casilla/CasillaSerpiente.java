@@ -20,6 +20,7 @@ public class CasillaSerpiente extends Casilla implements CasillaEspecial {
 
     public CasillaSerpiente(int filaBajar, int columnaBajar, int idCasillaBajar, int fila, int columna, int id) {
         super(fila, columna, id);
+        super.setColor(SERPIENTE);
         this.filaBajar = filaBajar;
         this.columnaBajar = columnaBajar;
         this.idCasillaBajar = idCasillaBajar;
@@ -27,6 +28,7 @@ public class CasillaSerpiente extends Casilla implements CasillaEspecial {
 
     public CasillaSerpiente(int filaBajar, int columnaBajar, int idCasillaBajar, int fila, int columna) {
         super(fila, columna);
+        super.setColor(SERPIENTE);
         this.filaBajar = filaBajar;
         this.columnaBajar = columnaBajar;
         this.idCasillaBajar = idCasillaBajar;
@@ -34,6 +36,7 @@ public class CasillaSerpiente extends Casilla implements CasillaEspecial {
 
     public CasillaSerpiente(int filaBajar, int columnaBajar, int idCasillaBajar, int id) {
         super(id);
+        super.setColor(SERPIENTE);
         this.filaBajar = filaBajar;
         this.columnaBajar = columnaBajar;
         this.idCasillaBajar = idCasillaBajar;

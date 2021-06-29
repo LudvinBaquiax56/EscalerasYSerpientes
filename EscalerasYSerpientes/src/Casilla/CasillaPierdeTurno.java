@@ -24,6 +24,7 @@ public class CasillaPierdeTurno extends Casilla implements CasillaEspecial {
      */
     public CasillaPierdeTurno(int fila, int columna, int id) {
         super(fila, columna, id);
+        super.setColor(PIERDE_TURNO);
     }
 
     /**
@@ -35,6 +36,7 @@ public class CasillaPierdeTurno extends Casilla implements CasillaEspecial {
      */
     public CasillaPierdeTurno(int fila, int columna) {
         super(fila, columna);
+        super.setColor(PIERDE_TURNO);
     }
 
     /**
@@ -45,6 +47,7 @@ public class CasillaPierdeTurno extends Casilla implements CasillaEspecial {
      */
     public CasillaPierdeTurno(int id) {
         super(id);
+        super.setColor(PIERDE_TURNO);
     }
 
     /**

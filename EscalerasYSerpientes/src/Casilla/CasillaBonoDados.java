@@ -23,6 +23,7 @@ public class CasillaBonoDados extends Casilla implements CasillaEspecial {
      */
     public CasillaBonoDados(int fila, int columna, int id) {
         super(fila, columna, id);
+        super.setColor(TIRAR_DADOS);
     }
 
     /**
@@ -34,6 +35,7 @@ public class CasillaBonoDados extends Casilla implements CasillaEspecial {
      */
     public CasillaBonoDados(int fila, int columna) {
         super(fila, columna);
+        super.setColor(TIRAR_DADOS);
     }
 
     /**
@@ -43,6 +45,7 @@ public class CasillaBonoDados extends Casilla implements CasillaEspecial {
      */
     public CasillaBonoDados(int id) {
         super(id);
+        super.setColor(TIRAR_DADOS);
     }
 
     /**

@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class CasillaInicio extends Casilla implements CasillaEspecial {
 
-    private static final int ID_CASILLA = 1;
+    private static final int ID_CASILLA = 0;
 
     /**
      * Crea la casilla inicial en la que todos los jugador inican

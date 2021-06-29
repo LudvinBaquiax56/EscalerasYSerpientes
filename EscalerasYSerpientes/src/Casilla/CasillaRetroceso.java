@@ -26,6 +26,7 @@ public class CasillaRetroceso extends Casilla implements CasillaEspecial {
      */
     public CasillaRetroceso(int posicionesParaRetroceder, int fila, int columna, int id) {
         super(fila, columna, id);
+        super.setColor(RETROCEDER);
         this.posicionesParaRetroceder = posicionesParaRetroceder;
     }
 
@@ -38,6 +39,7 @@ public class CasillaRetroceso extends Casilla implements CasillaEspecial {
      */
     public CasillaRetroceso(int posicionesParaRetroceder, int fila, int columna) {
         super(fila, columna);
+        super.setColor(RETROCEDER);
         this.posicionesParaRetroceder = posicionesParaRetroceder;
     }
 
@@ -49,6 +51,7 @@ public class CasillaRetroceso extends Casilla implements CasillaEspecial {
      */
     public CasillaRetroceso(int posicionesParaRetroceder, int id) {
         super(id);
+        super.setColor(RETROCEDER);
         this.posicionesParaRetroceder = posicionesParaRetroceder;
     }
 

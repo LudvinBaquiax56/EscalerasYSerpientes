@@ -23,6 +23,7 @@ public class CasillaFin extends Casilla implements CasillaEspecial {
      */
     public CasillaFin(int fila, int columna, int id) {
         super(fila, columna, id);
+        super.setColor(FIN);
     }
 
     /**
@@ -33,6 +34,7 @@ public class CasillaFin extends Casilla implements CasillaEspecial {
      */
     public CasillaFin(int fila, int columna) {
         super(fila, columna);
+        super.setColor(FIN);
     }
 
     /**
@@ -42,6 +44,7 @@ public class CasillaFin extends Casilla implements CasillaEspecial {
      */
     public CasillaFin(int id) {
         super(id);
+        super.setColor(FIN);
     }
 
     /**
