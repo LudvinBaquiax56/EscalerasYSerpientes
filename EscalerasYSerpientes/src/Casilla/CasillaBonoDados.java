@@ -56,7 +56,7 @@ public class CasillaBonoDados extends Casilla implements CasillaEspecial {
      */
     @Override
     public void accionCasilla(Jugador jugador, List<Casilla> casillas) {
-        System.out.println("Ganaste otro turno");
+        //System.out.println("Ganaste otro turno");
     }
 
 }
