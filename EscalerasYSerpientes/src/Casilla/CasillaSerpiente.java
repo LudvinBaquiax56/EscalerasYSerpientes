@@ -44,8 +44,7 @@ public class CasillaSerpiente extends Casilla implements CasillaEspecial {
 
     @Override
     public void accionCasilla(Jugador jugador, List<Casilla> casillas) {
-        int casillasBajar = idCasillaBajar - super.getId();
-        jugador.setPosicion(jugador.getPosicion() - casillasBajar);
+        jugador.setPosicion(idCasillaBajar);
     }
 
     /**

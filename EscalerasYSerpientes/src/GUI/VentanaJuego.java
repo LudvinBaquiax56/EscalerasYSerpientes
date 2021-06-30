@@ -305,6 +305,7 @@ public class VentanaJuego extends javax.swing.JFrame {
                     + jugadorEnTurno.getNombre(), jugadorEnTurno.getNombre(), INFORMATION_MESSAGE);
             CasillaPierdeTurno aux = (CasillaPierdeTurno) casilla;
             aux.accionCasilla(jugadorEnTurno, juego.getListaCasillas());
+
         } else if (casilla instanceof CasillaBonoAvance) {
             ocultarFichaJugador();
 
@@ -313,6 +314,7 @@ public class VentanaJuego extends javax.swing.JFrame {
                     + " Casillas" + jugadorEnTurno.getNombre(), jugadorEnTurno.getNombre(),
                     INFORMATION_MESSAGE);
             aux.accionCasilla(jugadorEnTurno, juego.getListaCasillas());
+
         } else if (casilla instanceof CasillaRetroceso) {
             ocultarFichaJugador();
 
@@ -322,9 +324,21 @@ public class VentanaJuego extends javax.swing.JFrame {
                     INFORMATION_MESSAGE);
             aux.accionCasilla(jugadorEnTurno, juego.getListaCasillas());
         } else if (casilla instanceof CasillaEscalera) {
+            ocultarFichaJugador();
 
+            CasillaEscalera aux = (CasillaEscalera) casilla;
+            JOptionPane.showMessageDialog(null, "Felicidades, avanzas a la casilla " + aux.getIdCasillaSubir() + " "
+                    + jugadorEnTurno.getNombre(), jugadorEnTurno.getNombre(),
+                    INFORMATION_MESSAGE);
+            aux.accionCasilla(jugadorEnTurno, juego.getListaCasillas());
         } else if (casilla instanceof CasillaSerpiente) {
+            ocultarFichaJugador();
 
+            CasillaSerpiente aux = (CasillaSerpiente) casilla;
+            JOptionPane.showMessageDialog(null, "Lo sentimos, bajas a la casilla " + aux.getIdCasillaBajar()
+                    + " " + jugadorEnTurno.getNombre(), jugadorEnTurno.getNombre(),
+                    INFORMATION_MESSAGE);
+            aux.accionCasilla(jugadorEnTurno, juego.getListaCasillas());
         }
     }
 

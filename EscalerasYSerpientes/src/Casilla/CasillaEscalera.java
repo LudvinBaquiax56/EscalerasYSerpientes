@@ -80,8 +80,7 @@ public class CasillaEscalera extends Casilla implements CasillaEspecial {
      */
     @Override
     public void accionCasilla(Jugador jugador, List<Casilla> casillas) {
-        int casillasASubir = super.getId() - idCasillaSubir;
-        jugador.setPosicion(jugador.getPosicion() + casillasASubir);
+        jugador.setPosicion(idCasillaSubir);
     }
 
     /**
