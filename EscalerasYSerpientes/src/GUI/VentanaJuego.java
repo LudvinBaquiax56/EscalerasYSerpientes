@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
+import Casilla.*;
 
 /**
  *
@@ -53,7 +54,6 @@ public class VentanaJuego extends javax.swing.JFrame {
         super.setLocationRelativeTo(null);
         super.setVisible(true);
         iniciarJuego();
-        //jugar();
     }
 
     /**
@@ -225,14 +225,17 @@ public class VentanaJuego extends javax.swing.JFrame {
 
         jugadorEnTurno.setPosicion(jugadorEnTurno.getPosicion() + random);
         if (!verificarGanador(jugadorEnTurno)) {
-            panelesCasilla.get(jugadorEnTurno.getPosicion()).mostrarFichaJugador(
-                    indiceJugadorEnTurno, jugadorEnTurno);
+            pintarFichaJuegador();
+            if (validarCasillaEspecial()) {
+                ejecutarCasillaEspecial();
+            }
         }
 
         if (verificarGanador(jugadorEnTurno)) {
+            panelesCasilla.get(panelesCasilla.size() - 1).mostrarFichaJugador(indiceJugadorEnTurno, jugadorEnTurno);
             JOptionPane.showMessageDialog(null, "Feliciades ganaste "
                     + jugadorEnTurno.getNombre(), "Ganador " + jugadorEnTurno.getNombre(), INFORMATION_MESSAGE);
-            jugadorEnTurno.setPartidasGanadas(jugadorEnTurno.getPartidasGanadas() + 1);
+            juego.declararGandor(jugadorEnTurno);
             declararPerdedores();
             btnLanzar.setEnabled(false);
             btnDener.setEnabled(false);
@@ -244,22 +247,33 @@ public class VentanaJuego extends javax.swing.JFrame {
     private void iniciarJuego() {
         jugadorEnTurno = juego.getJugadores().get(0);
         indiceJugadorEnTurno = 1;
+        pnlDado.setBackground(jugadorEnTurno.getColor());
+        pnlDado.repaint();
         lblJugadorEnTurno.setText(jugadorEnTurno.getNombre());
         lblJugadorEnTurno.repaint();
     }
 
     private Jugador siguienteJugadorEnturno() {
-        Jugador aux = null;
-        if (indiceJugadorEnTurno == juego.getJugadores().size()) {
+        Jugador aux;
+        if (indiceJugadorEnTurno >= juego.getJugadores().size()) {
             indiceJugadorEnTurno = 1;
             aux = juego.getJugadores().get(indiceJugadorEnTurno - 1);
         } else {
             aux = juego.getJugadores().get(indiceJugadorEnTurno);
             indiceJugadorEnTurno++;
         }
+        pnlDado.setBackground(aux.getColor());
+        pnlDado.repaint();
         lblJugadorEnTurno.setText(aux.getNombre());
         lblJugadorEnTurno.repaint();
         lblJugadorEnTurno.revalidate();
+        //Si el siguiente en turno no tiene turno
+        if (!aux.isConTurno()) {
+            JOptionPane.showMessageDialog(null, aux.getNombre(),
+                    "Recuperas tu turno " + aux.getNombre(), INFORMATION_MESSAGE);
+            indiceJugadorEnTurno++;
+            aux = siguienteJugadorEnturno();
+        }
         return aux;
     }
 
@@ -270,6 +284,41 @@ public class VentanaJuego extends javax.swing.JFrame {
                         juego.getJugadores().get(i).getPartidasPerdidas() + 1);
             }
         }
+    }
+
+    private boolean validarCasillaEspecial() {
+        Casilla aux = juego.getListaCasillas().get(jugadorEnTurno.getPosicion());
+        return aux instanceof CasillaPierdeTurno || aux instanceof CasillaBonoAvance
+                || aux instanceof CasillaBonoDados || aux instanceof CasillaEscalera
+                || aux instanceof CasillaRetroceso || aux instanceof CasillaSerpiente;
+    }
+
+    private void ejecutarCasillaEspecial() {
+        Casilla casilla = juego.getListaCasillas().get(jugadorEnTurno.getPosicion());
+        if (casilla instanceof CasillaPierdeTurno) {
+            JOptionPane.showMessageDialog(null, jugadorEnTurno.getNombre(),
+                    "Pierdes un turno " + jugadorEnTurno.getNombre(), INFORMATION_MESSAGE);
+            CasillaPierdeTurno aux = (CasillaPierdeTurno) casilla;
+            aux.accionCasilla(jugadorEnTurno, juego.getListaCasillas());
+        } else if (casilla instanceof CasillaBonoAvance) {
+
+        } else if (casilla instanceof CasillaBonoDados) {
+
+        } else if (casilla instanceof CasillaEscalera) {
+
+        } else if (casilla instanceof CasillaEscalera) {
+
+        } else if (casilla instanceof CasillaSerpiente) {
+
+        }
+    }
+
+    /**
+     *
+     */
+    private void pintarFichaJuegador() {
+        panelesCasilla.get(jugadorEnTurno.getPosicion()).mostrarFichaJugador(
+                indiceJugadorEnTurno, jugadorEnTurno);
     }
 
 }

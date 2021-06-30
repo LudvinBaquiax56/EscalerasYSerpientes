@@ -19,10 +19,18 @@ public class JuegoEscalerasYSerpientes {
     private Casilla[][] casillas;
     private List<Casilla> listaCasillas;
 
+    /**
+     * Crea un juego de escaleras y serpientes
+     *
+     * @param jugadores
+     * @param casillas
+     * @param listaCasillas
+     */
     public JuegoEscalerasYSerpientes(List<Jugador> jugadores, Casilla[][] casillas, List<Casilla> listaCasillas) {
         this.jugadores = jugadores;
         this.casillas = casillas;
         this.listaCasillas = listaCasillas;
+        sumarPartidaJugada();
         colacarJugadoresEnElInicio();
     }
 
@@ -68,16 +76,31 @@ public class JuegoEscalerasYSerpientes {
         this.listaCasillas = listaCasillas;
     }
 
+    /**
+     * Otorga una partida jugada a todos los jugadores de una partida
+     */
     public void sumarPartidaJugada() {
         for (int i = 0; i < jugadores.size(); i++) {
             jugadores.get(i).setPartidasJugadas(jugadores.get(i).getPartidasJugadas() + 1);
         }
     }
 
+    /**
+     * Ubica a los jugadores en la casilla inicial
+     */
     public void colacarJugadoresEnElInicio() {
         for (int i = 0; i < jugadores.size(); i++) {
             jugadores.get(i).setPosicion(0);
         }
+    }
+
+    /**
+     * Le suma un victoria a un jugaador
+     *
+     * @param ganador
+     */
+    public void declararGandor(Jugador ganador) {
+        ganador.setPartidasGanadas(ganador.getPartidasGanadas() + 1);
     }
 
 }

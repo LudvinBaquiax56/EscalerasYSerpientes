@@ -49,6 +49,8 @@ public class VentaInicioPartida extends javax.swing.JFrame {
 
     /**
      * Creates new form VentaInicioPartida
+     * @param menu
+     * @param sistema
      */
     public VentaInicioPartida(VentanaPrincipal menu, SistemaGeneral sistema) {
         initComponents();
@@ -231,6 +233,7 @@ public class VentaInicioPartida extends javax.swing.JFrame {
         // TODO add your handling code here:
         JuegoEscalerasYSerpientes juegito = new JuegoEscalerasYSerpientes(jugadoresPartida, casillas, listaCasillas);
         VentanaJuego juego = new VentanaJuego(menu, juegito);
+        super.setVisible(false);
     }//GEN-LAST:event_btnJugarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

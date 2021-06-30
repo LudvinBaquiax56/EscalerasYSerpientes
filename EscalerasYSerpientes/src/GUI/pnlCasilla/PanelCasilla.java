@@ -56,22 +56,27 @@ public class PanelCasilla extends javax.swing.JPanel {
         lblId.setText("Id");
 
         lblJ1.setBackground(new java.awt.Color(0, 142, 177));
+        lblJ1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblJ1.setOpaque(true);
         lblJ1.setPreferredSize(new java.awt.Dimension(15, 15));
 
         lblJ2.setBackground(new java.awt.Color(0, 142, 177));
+        lblJ2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblJ2.setOpaque(true);
         lblJ2.setPreferredSize(new java.awt.Dimension(15, 15));
 
         lblJ3.setBackground(new java.awt.Color(0, 142, 177));
+        lblJ3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblJ3.setOpaque(true);
         lblJ3.setPreferredSize(new java.awt.Dimension(15, 15));
 
         lblJ4.setBackground(new java.awt.Color(0, 142, 177));
+        lblJ4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblJ4.setOpaque(true);
         lblJ4.setPreferredSize(new java.awt.Dimension(15, 15));
 
         lblJ5.setBackground(new java.awt.Color(0, 142, 177));
+        lblJ5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblJ5.setOpaque(true);
         lblJ5.setPreferredSize(new java.awt.Dimension(15, 15));
 

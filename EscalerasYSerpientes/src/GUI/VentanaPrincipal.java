@@ -17,6 +17,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     /**
      * Creates new form VentanaPrincipal
+     * @param sistema
      */
     public VentanaPrincipal(SistemaGeneral sistema) {
         this.sistema = sistema;
